@@ -58,29 +58,42 @@ public class SnakeLadderLogic {
 
     public void startGame()
     {
-        int count=0;
-        int player1 =0;
-
+        int player1 =0, player2=0;
+        int currentPlayer=-1;
         Scanner s = new Scanner(System.in);
         String userinput;
         int diceValue =0;
         do {
+            System.out.println(currentPlayer == -1 ? "\n\nFIRST PLAYER TURN" : "\n\nSECOND PLAYER TURN");
             System.out.println("Press r to roll Dice");
             userinput = s.next();
             diceValue = rollDice();
             if (!"r".equalsIgnoreCase(userinput))
                 System.err.println("Sorry your input is not correct and Please press r");
             else {
-                count++;
+                if (currentPlayer == -1) {
                     player1 = findPlayerPosition(player1, diceValue);
-                    System.out.println(" Player :: " + player1);
+                    System.out.println("First Player :: " + player1);
+                    System.out.println("Second Player :: " + player2);
                     System.out.println("------------------");
                     if (isWin(player1)) {
-                        System.out.println("player wins");
-                        System.out.println("number of times rolling the dice : "+count);
+                        System.out.println("First player wins");
+                        return;
+                    }
+                } else {
+                    player2 = findPlayerPosition(player2, diceValue);
+                    System.out.println("First Player :: " + player1);
+                    System.out.println("Second Player :: " + player2);
+                    System.out.println("------------------");
+                    if (isWin(player2)) {
+                        System.out.println("Second player wins");
                         return;
                     }
                 }
+
+                currentPlayer = -currentPlayer;
+            }
+
         }
         while (true) ;
 
