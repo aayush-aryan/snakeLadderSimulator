@@ -55,4 +55,9 @@ public class SnakeLadderLogic {
         }
         return player;
     }
+
+    public boolean isWin(int player)
+    {
+        return WINPOSITION == player;
+    }
 }
