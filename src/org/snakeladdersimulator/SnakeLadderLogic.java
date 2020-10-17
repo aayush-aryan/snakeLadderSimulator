@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class SnakeLadderLogic {
     int player1=0;
+    final static int WINPOSITION = 100;
 
     static Map<Integer,Integer> snakeposition = new HashMap<Integer,Integer>();
     static Map<Integer,Integer> ladderposition = new HashMap<Integer,Integer>();
@@ -30,5 +31,28 @@ public class SnakeLadderLogic {
         Random random = new Random();
         dice=random.nextInt(7);
         return (dice==0?1:dice);
+    }
+    public int findPlayerPosition(int player, int diceValue)
+    {
+        player = player + diceValue;
+
+        if(player > WINPOSITION)
+        {
+            player = player - diceValue;
+            return player;
+        }
+//checking player postion is snake
+        if(snakeposition.get(player)!=null)
+        {
+            System.out.println("swallowed by snake");
+            player= snakeposition.get(player);
+        }
+
+        if(ladderposition.get(player)!=null)
+        {
+            System.out.println("climb up the ladder");
+            player= ladderposition.get(player);
+        }
+        return player;
     }
 }
