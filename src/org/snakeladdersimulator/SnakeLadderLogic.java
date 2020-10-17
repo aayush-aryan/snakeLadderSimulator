@@ -60,13 +60,13 @@ public class SnakeLadderLogic {
     {
         int player1 =0, player2=0;
         int currentPlayer=-1;
-        Scanner s = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String userinput;
         int diceValue =0;
         do {
             System.out.println(currentPlayer == -1 ? "\n\nFIRST PLAYER TURN" : "\n\nSECOND PLAYER TURN");
             System.out.println("Press r to roll Dice");
-            userinput = s.next();
+            userinput = scanner.next();
             diceValue = rollDice();
             if (!"r".equalsIgnoreCase(userinput))
                 System.err.println("Sorry your input is not correct and Please press r");
